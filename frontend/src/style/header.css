@@ -1,0 +1,78 @@
+/* Header-specific styles */
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* align header content to top-left */
+  padding-top: 8px;
+  padding-bottom: 8px;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.header-inner { display:flex; align-items:center; gap:12px; width:100%; max-width:1100px; margin:0 16px; justify-content:flex-start }
+.logo { display:flex; align-items:center; justify-content:flex-start }
+.header-text { text-align:left }
+
+.main-title {
+  font-size: 1.2rem; /* compact header */
+  color: #fff;
+  margin: 0;
+}
+
+.main-description {
+  font-size: 0.85rem; /* compact header */
+  color: #e6f0ef;
+  margin: 0;
+}
+
+/* header action icons (upper-right) */
+.header-actions {
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 1100;
+}
+.icon-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease;
+}
+.icon-button svg { width: 20px; height: 20px; display: block }
+.icon-button:hover { background: rgba(255,255,255,0.06); transform: translateY(-2px) }
+.icon-button:focus { outline: 2px solid rgba(255,255,255,0.12); }
+
+/* small badge showing user role and dept in header */
+.user-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.03);
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: #e6f0ef;
+  font-size: 0.9rem;
+}
+.user-badge .badge-role { font-weight: 600; }
+.user-badge .badge-dept { opacity: 0.9; font-size: 0.85rem; color: rgba(255,255,255,0.9); }
+
+/* Disable hover effects on the badge (no tooltip/hover styling) */
+.user-badge:hover { background: rgba(255,255,255,0.03); transform: none; }
+.user-badge { cursor: default; }
+
+.site-logo { width:40px; height:40px; display:block }

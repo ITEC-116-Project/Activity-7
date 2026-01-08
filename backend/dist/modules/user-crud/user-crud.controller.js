@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserCrudController = void 0;
 const common_1 = require("@nestjs/common");
@@ -20,6 +23,15 @@ let UserCrudController = class UserCrudController {
     findAll() {
         return this.userCrudService.findAll();
     }
+    create(body) {
+        return this.userCrudService.create(body);
+    }
+    update(id, body) {
+        return this.userCrudService.update(Number(id), body);
+    }
+    remove(id) {
+        return this.userCrudService.remove(Number(id));
+    }
 };
 exports.UserCrudController = UserCrudController;
 __decorate([
@@ -28,8 +40,30 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UserCrudController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UserCrudController.prototype, "create", null);
+__decorate([
+    (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", void 0)
+], UserCrudController.prototype, "update", null);
+__decorate([
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UserCrudController.prototype, "remove", null);
 exports.UserCrudController = UserCrudController = __decorate([
-    (0, common_1.Controller)('user-crud'),
+    (0, common_1.Controller)("user-crud"),
     __metadata("design:paramtypes", [user_crud_service_1.UserCrudService])
 ], UserCrudController);
 //# sourceMappingURL=user-crud.controller.js.map

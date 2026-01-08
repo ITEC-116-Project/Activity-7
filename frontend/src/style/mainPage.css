@@ -1,34 +1,1083 @@
 /* src/style/mainPage.css */
 
+/* Remove default page margin so gradient fills edge-to-edge */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* prevent page scrollbars - inner areas handle scrolling */
+}
+
+/* Load Poppins for the whole page */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --header-height: 64px; /* adjust if your header is taller/shorter */
+  --side-gap: 12px;
+  --bottom-gap: 12px;
+}
+
 .main-container {
   text-align: center;
-  margin-top: 50px;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  height: 100vh; /* lock to viewport so inner areas can manage scrolling */
+  overflow: hidden; /* prevent page level scrollbars */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #ddd;
+  color: #020202;
+}
+
+/* landing pages (login / signup) use the gradient background */
+.main-container.landing {
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+}
+
+/* Header styles moved to header.css */
+
+.header layout moved to header.css .auth-card .site-logo {
+  width: 56px;
+  height: 56px
 }
 
 .main-title {
-  font-size: 2.5rem;
-  color: #222;
-  margin-bottom: 10px;
+  margin: 0
 }
 
 .main-description {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 30px;
+  margin: 0
 }
 
+/* header action icon and user-badge styles moved to header.css */
+
+/* header title and description now in header.css */
+
 .main-button {
-  background-color: #1976d2;
-  color: white;
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  color: #fff;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 18px;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
+  margin: 10px;
 }
 
 .main-button:hover {
-  background-color: #135ca3;
+  transform: translateY(-2px);
 }
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+  /* center children so full-width elements align */
+  width: 100%;
+  /* full width within card */
+}
+
+.auth-card {
+  width: 620px;
+  max-width: calc(100% - 32px);
+  background: #fff;
+  color: #122;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: auto;
+  /* center vertically and horizontally */
+}
+
+.auth-card-logo {
+  background: linear-gradient(180deg, #36c7b2, #057a6f);
+  padding: 12px;
+  border-radius: 999px
+}
+
+.auth-card-title {
+  font-size: 1.25rem;
+  margin: 0;
+  color: #122
+}
+
+.auth-card-sub {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem
+}
+
+.auth-card .main-button {
+  background: #111;
+  color: #fff;
+  width: 100%;
+}
+
+.auth-card .link {
+  text-decoration: underline
+}
+
+.auth-form input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Smaller, left-aligned labels inside auth cards */
+.auth-card .auth-form label {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 0.80rem; /* smaller label text */
+  color: #6b7280; /* muted gray */
+  margin: 6px 0 6px 0;
+  font-weight: 600;
+}
+
+/* Apply Poppins to form controls and buttons */
+input,
+textarea,
+select,
+button,
+option {
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Ensure placeholders use Poppins too */
+input::placeholder,
+textarea::placeholder {
+  font-family: 'Poppins', sans-serif;
+}
+
+input::-webkit-input-placeholder {
+  font-family: 'Poppins', sans-serif;
+}
+
+input::-moz-placeholder {
+  font-family: 'Poppins', sans-serif;
+}
+
+input:-ms-input-placeholder {
+  font-family: 'Poppins', sans-serif;
+}
+
+input:-moz-placeholder {
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.input-wrapper input {
+  padding-right: 42px;
+  /* space for eye button */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.eye-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f766e;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+}
+
+.eye-toggle svg {
+  width: 18px;
+  height: 18px;
+  display: block
+}
+
+.eye-toggle:focus {
+  outline: none
+}
+
+.eye-toggle:active {
+  transform: translateY(-50%) scale(0.98)
+}
+
+.eye-icon {
+  display: block;
+  transition: transform .12s ease, opacity .12s ease
+}
+
+.eye-toggle:hover {
+  background: rgba(15, 118, 110, 0.06)
+}
+
+.auth-form .main-button {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth-form .link {
+  width: 100%;
+  text-align: center;
+}
+
+.link {
+  background: transparent;
+  color: #e6f0ef;
+  border: none;
+  margin-top: 6px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Accent link used on auth pages for create account / switch links */
+.link-cancel {
+  color: #374151; /* visible dark gray */
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .12s ease, text-decoration .12s ease;
+}
+.link-cancel:hover {
+  color: #111827;
+  text-decoration: underline;
+}
+.link-cancel:focus { outline: none; box-shadow: none; text-decoration: underline; }
+
+.link-close {
+  color: #60a5fa; /* light blue */
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .12s ease, transform .12s ease;
+}
+.link-close:hover {
+  color: #1e90ff;
+  transform: translateY(-1px);
+  text-decoration: underline;
+}
+
+/* Main select to match action button styling (used for filters and inline controls) */
+.main-select {
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  min-width: 140px;
+}
+.main-select option {
+  /* Attempt to style option items; browsers vary but this improves where supported */
+  color: #fff;
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+}
+.main-select option:checked,
+.main-select option:hover {
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  color: #fff;
+}
+
+/* Keep select looking like a button when focused/active */
+.main-select:focus,
+.main-select:active {
+  outline: none;
+  box-shadow: 0 6px 18px rgba(5,25,55,0.18);
+}
+
+/* Keep signup's select font-size consistent with the auth card while using main-select visuals */
+.auth-card .main-select {
+  font-size: inherit; /* do not change font-size on signup page */
+  width: 100%;
+  padding: 10px 12px; /* match auth inputs */
+  box-sizing: border-box;
+}
+
+/* Custom select wrapper and menu (for fully-styled dropdowns) */
+.custom-select { position: relative; display: inline-block; }
+.custom-select .select-button { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.custom-select .select-caret { opacity: 0.9 }
+.select-menu {
+  position: absolute;
+  z-index: 50;
+  left: 0;
+  right: 0;
+  margin-top: 4px; /* smaller gap so menu sits closer to button */
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(5,25,55,0.28);
+  padding: 0; /* remove internal padding so items align flush with edges */
+  max-height: 240px;
+  overflow: auto;
+}
+.select-item {
+  padding: 10px 14px; /* slightly larger for touch but remove extra whitespace */
+  cursor: pointer;
+  position: relative;
+  transform: translateZ(0);
+  transition: transform .12s cubic-bezier(.2,.9,.2,1), background .12s ease;
+  box-sizing: border-box;
+}
+.select-item:hover, .select-item.selected {
+  background: rgba(0,0,0,0.12);
+  color: #fff;
+  /* pop the item slightly without moving the menu */
+  transform: translateY(-4px) scale(1.02);
+}
+.select-item:active { transform: translateY(-1px) scale(0.995); }
+.select-item + .select-item { border-top: 1px solid rgba(255,255,255,0.03) }
+.select-item:first-child { border-top-left-radius: 8px; border-top-right-radius: 8px }
+.select-item:last-child { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px }
+.select-menu::-webkit-scrollbar { width: 0; height: 0; }
+.select-menu::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 6px }
+.select-menu { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Compact custom select: fit to option text instead of stretching full-width */
+.custom-select.compact .select-button { width: auto; min-width: 140px; white-space: nowrap; }
+.custom-select.compact .select-menu { left: auto; right: auto; min-width: max-content; width: auto; }
+.custom-select.compact .select-item { white-space: nowrap; }
+
+/* When used inside the auth card (signup/login), make the custom select match input widths */
+.auth-card .custom-select { display: block; width: 100%; }
+.auth-card .custom-select .select-button { width: 100%; box-sizing: border-box; }
+.auth-card .custom-select .select-menu { left: 0; right: 0; min-width: 100%; width: 100%; }
+
+.dashboard {
+  width: 100%;
+  max-width: none; /* allow dashboard to fill available horizontal space */
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
+  align-self: flex-start;
+  margin-left: 16px;
+  margin-right: 16px;
+  /* allow the layout to expand so the card can fill remaining space next to sidenav */
+}
+.dashboard-layout {
+  display: flex;
+  align-items: flex-start;
+  /* make the layout a fixed-size area so page itself doesn't scroll */
+  /* compute height from header and top/bottom gaps so it aligns with sidenav */
+  height: calc(100vh - var(--header-height) - var(--side-gap) - var(--bottom-gap));
+  margin-top: var(--side-gap);
+  margin-bottom: var(--bottom-gap);
+}
+
+/* hide native scrollbars while keeping scrolling functional */
+.dashboard-card {
+  /* allow the dashboard card itself to scroll when content is tall
+     (page-level scrolling is disabled; inner areas handle overflow) */
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on touch devices */
+  -ms-overflow-style: none; /* IE and Edge: hide native scrollbar visuals */
+  scrollbar-width: none; /* Firefox: hide native scrollbar visuals */
+}
+.dashboard-card::-webkit-scrollbar { display: none; }
+
+
+.dashboard-main {
+  flex: 1;
+  padding: 0 12px; /* remove top/bottom padding so card aligns with sidenav */
+  /* make the main area fill the remaining viewport height so the card can stretch */
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--header-height) - var(--side-gap) - var(--bottom-gap));
+}
+
+.dashboard-card {
+  background: #fff;
+  color: #122;
+  border-radius: 12px;
+  padding: 12px 16px; /* slightly reduced padding */
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  /* make the card fit the available area while capping its width */
+  width: calc(100% - 40px); /* leave a bit of gutter */
+  max-width: 1650px; /* allow more width on large screens */
+  /* Fill the available height of the layout */
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px; /* align a bit away from sidenav */
+  align-self: flex-start;
+}
+
+.dashboard-card .user-info {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+}
+
+.section-actions {
+  margin-bottom: 8px
+}
+
+.section-actions.muted {
+  color: #000; /* explicit black text for muted section actions */
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 12px 0 16px 0;
+  align-items: start;
+}
+
+.stat-card {
+  /* Use provided teal gradient as the card background */
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  padding: 12px 14px;
+  border-radius: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Projects grid: show project cards as square tiles (3 columns on desktop) */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.projects-grid .item-row {
+  /* fixed-height card so description can scroll independently */
+  height: 280px;
+  display: flex; /* override earlier row layout */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px;
+  position: relative;
+}
+
+.projects-grid .project-badge {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  background: rgba(0,0,0,0.18);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.projects-grid .project-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.projects-grid .project-desc {
+  color: rgba(255,255,255,0.92);
+  margin-top: 8px;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  /* allow the description area to expand and scroll inside the card */
+  flex: 1 1 auto;
+  overflow: auto;
+  /* ensure long words don't overflow the card */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  -ms-overflow-style: none; /* IE/Edge hide scrollbar */
+  scrollbar-width: none; /* Firefox hide scrollbar */
+}
+
+/* Hide webkit scrollbar while keeping scrolling functional */
+.projects-grid .project-desc::-webkit-scrollbar { width: 0; height: 0; }
+
+.projects-grid .project-meta {
+  margin-top: 10px;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.85rem;
+}
+
+.projects-grid .presentation-block {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.projects-grid .presentation-name {
+  color: rgba(255,255,255,0.95);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.projects-grid .presentation-label {
+  display: inline-block;
+  margin-right: 6px;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+}
+.projects-grid .presentation-datetime {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.9rem;
+}
+.projects-grid .presentation-assigned {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.completed-text {
+  color: rgba(255,255,255,0.85);
+  font-weight: 700;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.confirm-message {
+  margin: 8px 0 16px 0;
+  color: rgba(0,0,0,0.85);
+  font-size: 0.95rem;
+}
+.confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.confirm-button {
+  background: linear-gradient(90deg, #dc2626, #ef4444); /* red */
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.confirm-button:hover { transform: translateY(-2px); }
+
+.link-cancel {
+    color: #60a5fa;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .12s ease, transform .12s ease;
+}
+.link-cancel:hover {
+    color: #60a5fa;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .12s ease, transform .12s ease;
+}
+.link-cancel:focus { outline: none; box-shadow: 0 6px 18px rgba(17,24,39,0.08); }
+
+.projects-grid .project-owner {
+  margin-top: 8px;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.projects-grid .project-start {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.9rem;
+}
+
+.projects-grid .project-end {
+  margin-top: 6px;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.85rem;
+}
+
+.projects-grid .item-actions { align-self: flex-end }
+
+.empty-state {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  color: #fff;
+  padding: 24px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px dashed rgba(255,255,255,0.35);
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+/* Make the main content area a clipped flex column so the description cannot overlap actions */
+.projects-grid .item-main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+  overflow: hidden; /* clip any overflowing text */
+}
+
+/* Title should truncate if too long */
+.projects-grid .project-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* responsive: 2 columns on medium screens, 1 on small */
+@media (max-width: 900px) {
+  .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .projects-grid .item-row { height: 240px; }
+}
+@media (max-width: 600px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .projects-grid .item-row { height: 200px; }
+}
+
+.stat-card .stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-icon {
+  color: #fff; /* icons should be white to contrast with gradient cards */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #e6f0ef
+}
+
+.stat-value {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #fff
+}
+
+.mini-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+  max-width: 420px
+}
+
+.mini-form input,
+.mini-form select {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* make each item a card with the teal gradient and white text */
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 6px 18px rgba(5, 25, 55, 0.18);
+}
+
+.item-actions {
+  display: flex;
+  gap: 8px
+}
+
+/* small icon action buttons used for edit/delete on rows */
+.icon-action {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.95);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease, color .12s ease;
+}
+.icon-action svg { width: 18px; height: 18px; display: block; }
+.icon-action:hover { background: rgba(255,255,255,0.06); transform: translateY(-2px); color: #fff }
+.icon-action:focus { outline: none; box-shadow: 0 6px 18px rgba(5,25,55,0.12); }
+
+.item-row .item-main { color: #fff }
+.item-row .item-actions .link { color: rgba(255,255,255,0.95); text-decoration: underline }
+.item-row select {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.item-main {
+  flex: 1
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px
+}
+
+.dashboard-tabs .tab {
+  background: rgba(255, 255, 255, 0.03);
+  color: #e6f0ef;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer
+}
+
+.dashboard-tabs .tab.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff
+}
+
+.profile-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px
+}
+
+.profile-card .muted {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal {
+  background: #fff;
+  color: #122;
+  border-radius: 10px;
+  width: 520px; /* increased width for improved form layout */
+  max-width: calc(100% - 48px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.32);
+  overflow: hidden;
+  text-align: left; /* ensure modal content aligns left by default */
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #f7f7f7;
+}
+.modal-header .modal-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.modal-header .modal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  color: #fff;
+}
+.modal-header .modal-title h3 { margin: 0; font-size: 1.125rem; font-weight: 700; color: #122 }
+
+.modal-body {
+  padding: 20px 22px 24px;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px
+}
+
+.modal input,
+.modal select,
+.modal textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.modal .select-wrapper {
+  position: relative;
+}
+
+.modal .field-row { display: flex; gap: 8px; align-items: center }
+.modal .field-row .half { flex: 1 }
+
+.modal .main-button {
+  width: auto;
+  align-self: flex-end
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+  align-items: flex-start; /* ensure label and value sit to the left */
+}
+.profile-field label { color: #666; font-size: 0.9rem; display: block; width: 100%; text-align: left }
+.profile-field .profile-value { font-weight: 600; color: #122; width: 100%; text-align: left }
+
+.plain-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.plain-field label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.plain-field span {
+  font-size: 0.95rem;
+  color: #111827;
+  min-height: 20px;
+}
+
+.dashboard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard li:not(.item-row) {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  border-radius: 6px;
+}
+
+.dashboard li.empty-state {
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  border-radius: 14px;
+  padding: 32px;
+  color: #fff;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  text-align: center;
+}
+
+.user-info {
+  margin-bottom: 10px;
+}
+
+/* Toast styles */
+.toast-container {
+  position: fixed;
+  right: 16px;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 9999;
+}
+
+.toast {
+  min-width: 220px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.user-list-modal {
+  max-height: 60vh;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.user-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #051937 0%, #0f766e 100%);
+  color: #fff;
+}
+
+.user-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.user-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.user-meta {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.user-meta .badge {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.user-meta .dot {
+  opacity: 0.6;
+}
+
+.toast.success {
+  background: linear-gradient(90deg, #18a558, #2ecc71);
+}
+
+.toast.error {
+  background: linear-gradient(90deg, #d64545, #ff6b6b);
+}
+
+.toast.warning {
+  background: linear-gradient(90deg, #e6a23c, #f6c85f);
+  color: #111
+}
+
+.toast .toast-close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 18px;
+  cursor: pointer
+}
+
+.toast .toast-message {
+  flex: 1
+}
+
+/* Two-column layout for auth forms (signup) */
+.auth-card .form-grid {
+  --auth-col-w: 260px; /* fixed column width for 2x2 inputs */
+  --auth-gap: 18px;
+  display: grid;
+  grid-template-columns: var(--auth-col-w) var(--auth-col-w);
+  gap: 12px var(--auth-gap);
+  align-items: start;
+  justify-content: center;
+}
+.auth-card .form-field { display: flex; flex-direction: column; }
+.auth-card .form-field.full { grid-column: 1 / -1; }
+
+@media (max-width: 760px) {
+  .auth-card { width: 100%; max-width: 520px; }
+  .auth-card .form-grid { grid-template-columns: 1fr; }
+  .auth-card .form-field.full > input,
+  .auth-card .form-field.full > .input-wrapper,
+  .auth-card .form-field.full .custom-select .select-button { width: 100%; }
+}
+
+/* Constrain inputs in two-column grid to the column width and center the grid inside the card */
+.auth-card .form-field input,
+.auth-card .form-field .main-select,
+.auth-card .form-field .custom-select .select-button,
+.auth-card .form-field .input-wrapper { width: 100%; max-width: var(--auth-col-w); box-sizing: border-box; }
+.auth-card .form-field.full > input,
+.auth-card .form-field.full > .input-wrapper,
+.auth-card .form-field.full .custom-select .select-button { max-width: calc(var(--auth-col-w) * 2 + var(--auth-gap)); }
+
+/* Ensure inputs inside an input-wrapper in a full-width field also expand to the full span */
+.auth-card .form-field.full .input-wrapper input { max-width: calc(var(--auth-col-w) * 2 + var(--auth-gap)); }

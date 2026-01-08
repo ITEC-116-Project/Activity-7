@@ -1,2 +1,4 @@
-import { User } from "./entities/users";
-export declare const AllEntities: (typeof User)[];
+import { User } from "./entities/user_act7";
+import { Project } from "./entities/projects";
+import { Task } from "./entities/tasks";
+export declare const AllEntities: (typeof User | typeof Project | typeof Task)[];

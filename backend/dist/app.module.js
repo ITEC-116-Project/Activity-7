@@ -9,33 +9,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
-const typeorm_1 = require("@nestjs/typeorm");
-const user_crud_module_1 = require("./modules/user-crud/user-crud.module");
+const database_config_js_1 = require("./config/database.config.js");
+const user_crud_module_js_1 = require("./modules/user-crud/user-crud.module.js");
+const projects_module_js_1 = require("./modules/projects/projects.module.js");
+const tasks_module_js_1 = require("./modules/tasks/tasks.module.js");
+const auth_module_js_1 = require("./modules/auth/auth.module.js");
+const health_module_js_1 = require("./modules/health/health.module.js");
+const skipDb = process.env.SKIP_DB === "1" || process.env.SKIP_DB === "true";
+const importsArray = [
+    config_1.ConfigModule.forRoot({
+        isGlobal: true,
+        envFilePath: ["env", ".env"],
+    }),
+];
+if (!skipDb) {
+    importsArray.push(database_config_js_1.DatabaseConfig);
+}
+importsArray.push(user_crud_module_js_1.UserCrudModule, projects_module_js_1.ProjectsModule, tasks_module_js_1.TasksModule, auth_module_js_1.AuthModule, health_module_js_1.HealthModule);
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            config_1.ConfigModule.forRoot({
-                isGlobal: true,
-            }),
-            typeorm_1.TypeOrmModule.forRootAsync({
-                imports: [config_1.ConfigModule],
-                inject: [config_1.ConfigService],
-                useFactory: (config) => ({
-                    type: 'mysql',
-                    host: config.get('DB_HOST'),
-                    port: config.get('DB_PORT'),
-                    username: config.get('DB_USER'),
-                    password: config.get('DB_PASS'),
-                    database: config.get('DB_NAME'),
-                    autoLoadEntities: true,
-                    synchronize: true,
-                }),
-            }),
-            user_crud_module_1.UserCrudModule,
-        ],
+        imports: importsArray,
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

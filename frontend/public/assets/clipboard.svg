@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffd57e"/>
+      <stop offset="1" stop-color="#f2b63e"/>
+    </linearGradient>
+  </defs>
+  <!-- clipboard body -->
+  <rect x="8" y="8" width="40" height="48" rx="4" fill="#fff" stroke="#e2e2e2" stroke-width="2"/>
+  <!-- top clip -->
+  <rect x="18" y="4" width="16" height="8" rx="2" fill="#dbe9f2" />
+  <!-- list lines -->
+  <rect x="18" y="18" width="20" height="4" rx="2" fill="#e6eff0" />
+  <rect x="18" y="30" width="20" height="4" rx="2" fill="#e6eff0" />
+  <rect x="18" y="42" width="20" height="4" rx="2" fill="#e6eff0" />
+  <!-- checkboxes -->
+  <rect x="12" y="16" width="6" height="6" rx="1" fill="#2bb673" />
+  <rect x="12" y="28" width="6" height="6" rx="1" fill="#2bb673" />
+  <rect x="12" y="40" width="6" height="6" rx="1" fill="#2bb673" />
+  <!-- check marks -->
+  <polyline points="13.5,19 15.5,21 18.5,16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+  <polyline points="13.5,31 15.5,33 18.5,28" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+  <polyline points="13.5,43 15.5,45 18.5,40" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- pencil -->
+  <g transform="translate(44,36) rotate(20)">
+    <rect x="0" y="0" width="16" height="6" rx="1" fill="#ff9aa2" />
+    <rect x="0" y="0" width="10" height="6" rx="1" fill="#ffb1b7" />
+    <polygon points="16,3 20,6 12,6" fill="#473737" />
+    <rect x="-4" y="4" width="4" height="2" fill="#ffd6a5" />
+  </g>
+</svg>

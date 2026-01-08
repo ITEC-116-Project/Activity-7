@@ -1,20 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Entity } from "typeorm";
 
-@Entity({ name: 'users' })
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  user_id: number;
-
-  @Column()
-  name: string;
-
-  @Column()
-  email: string;
-
-  @Column()
-  password: string;
-
+@Entity({ name: "users_deprecated" })
+export class UserDeprecated {
+  // placeholder entity so imports that still reference './entities/users' don't break at import time
 }

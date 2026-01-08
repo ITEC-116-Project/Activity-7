@@ -1,3 +1,5 @@
-import { User } from "./entities/users";
+import { User } from "./entities/user_act7";
+import { Project } from "./entities/projects";
+import { Task } from "./entities/tasks";
 
-export const AllEntities = [User];
+export const AllEntities = [User, Project, Task];
