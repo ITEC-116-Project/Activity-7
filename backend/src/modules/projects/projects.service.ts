@@ -1,7 +1,8 @@
 import {
-  Injectable,
-  UnauthorizedException,
   BadRequestException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -70,6 +71,10 @@ export class ProjectsService {
   async update(id: number, data: Partial<Project>) {
     const payload = { ...data } as any;
 
+    if (!Object.keys(payload || {}).length) {
+      throw new BadRequestException("At least one field must be provided");
+    }
+
     if (payload.ownerId) {
       const owner = await this.userRepository.findOne({
         where: { companyId: payload.ownerId } as any,
@@ -80,6 +85,7 @@ export class ProjectsService {
         );
       payload.ownerId = owner.companyId;
     }
+
     // Validate dates on update as well
     if (payload.startDate) {
       const s = new Date(payload.startDate);
@@ -92,10 +98,15 @@ export class ProjectsService {
           throw new BadRequestException("endDate cannot be before startDate");
       }
     }
+
     if ("creatorId" in payload) delete payload.creatorId;
     if ("owner" in payload) delete payload.owner;
-    await this.projectRepository.update(id, payload);
-    return this.findOne(id);
+
+    const project = await this.projectRepository.preload({ id, ...payload } as any);
+    if (!project) throw new NotFoundException(`Project with id ${id} not found`);
+
+    const saved = await this.projectRepository.save(project);
+    return this.findOne(saved.id);
   }
 
   async remove(id: number) {

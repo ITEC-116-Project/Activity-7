@@ -248,6 +248,23 @@ input:-moz-placeholder {
   cursor: pointer;
 }
 
+/* Accent link used for auth switch buttons (e.g., "Have an account? Log in") */
+.link-accent {
+  color: #0f766e; /* teal accent used in gradients */
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color .12s ease, transform .08s ease;
+}
+.link-accent:hover {
+  color: #044f43; /* slightly darker on hover */
+  transform: translateY(-1px);
+}
+
 /* Accent link used on auth pages for create account / switch links */
 .link-cancel {
   color: #374151; /* visible dark gray */

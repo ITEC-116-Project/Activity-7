@@ -59,21 +59,36 @@ let UserCrudService = class UserCrudService {
     findAll() {
         return this.userRepository.find();
     }
-    create(data) {
+    async create(data) {
         if (data.password) {
             data.password = bcrypt.hashSync(data.password, 10);
         }
         const u = this.userRepository.create(data);
-        return this.userRepository.save(u);
+        const saved = await this.userRepository.save(u);
+        const { password, ...rest } = saved;
+        return rest;
     }
     async update(id, data) {
-        if (data.password)
+        if (!Object.keys(data || {}).length) {
+            throw new common_1.BadRequestException("At least one field must be provided");
+        }
+        if (data.password) {
             data.password = bcrypt.hashSync(data.password, 10);
-        await this.userRepository.update(id, data);
-        return this.userRepository.findOne({ where: { id } });
+        }
+        const user = await this.userRepository.preload({ id, ...data });
+        if (!user) {
+            throw new common_1.NotFoundException(`User with id ${id} not found`);
+        }
+        const saved = await this.userRepository.save(user);
+        const { password, ...rest } = saved;
+        return rest;
     }
-    remove(id) {
-        return this.userRepository.delete(id);
+    async remove(id) {
+        const result = await this.userRepository.delete(id);
+        if (!result.affected) {
+            throw new common_1.NotFoundException(`User with id ${id} not found`);
+        }
+        return { deleted: true };
     }
 };
 exports.UserCrudService = UserCrudService;

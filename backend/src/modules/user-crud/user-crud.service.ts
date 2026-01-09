@@ -1,8 +1,14 @@
-import { Injectable } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "../../typeorm/entities/user_act7";
 import * as bcrypt from "bcryptjs";
+import { CreateUserDto } from "./dto/create-user.dto.js";
+import { UpdateUserDto } from "./dto/update-user.dto.js";
 
 @Injectable()
 export class UserCrudService {
@@ -15,22 +21,38 @@ export class UserCrudService {
     return this.userRepository.find(); // fetch all users from DB
   }
 
-  create(data: Partial<User>) {
-    // hash password if present
+  async create(data: CreateUserDto) {
     if (data.password) {
       data.password = bcrypt.hashSync(data.password, 10);
     }
     const u = this.userRepository.create(data as any);
-    return this.userRepository.save(u);
+    const saved = await this.userRepository.save(u);
+    // avoid leaking hashed password
+    const { password, ...rest } = saved as any;
+    return rest;
   }
 
-  async update(id: number, data: Partial<User>) {
-    if (data.password) data.password = bcrypt.hashSync(data.password, 10);
-    await this.userRepository.update(id, data as any);
-    return this.userRepository.findOne({ where: { id } as any });
+  async update(id: number, data: UpdateUserDto) {
+    if (!Object.keys(data || {}).length) {
+      throw new BadRequestException("At least one field must be provided");
+    }
+    if (data.password) {
+      data.password = bcrypt.hashSync(data.password, 10);
+    }
+    const user = await this.userRepository.preload({ id, ...data } as any);
+    if (!user) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+    const saved = await this.userRepository.save(user);
+    const { password, ...rest } = saved as any;
+    return rest;
   }
 
-  remove(id: number) {
-    return this.userRepository.delete(id);
+  async remove(id: number) {
+    const result = await this.userRepository.delete(id);
+    if (!result.affected) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+    return { deleted: true };
   }
 }

@@ -14,7 +14,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserCrudController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const user_crud_service_1 = require("./user-crud.service");
+const create_user_dto_js_1 = require("./dto/create-user.dto.js");
+const update_user_dto_js_1 = require("./dto/update-user.dto.js");
 let UserCrudController = class UserCrudController {
     userCrudService;
     constructor(userCrudService) {
@@ -36,33 +39,38 @@ let UserCrudController = class UserCrudController {
 exports.UserCrudController = UserCrudController;
 __decorate([
     (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({ summary: "List all users" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UserCrudController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Post)(),
+    (0, swagger_1.ApiOperation)({ summary: "Create a new user" }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [create_user_dto_js_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
 ], UserCrudController.prototype, "create", null);
 __decorate([
     (0, common_1.Put)(":id"),
+    (0, swagger_1.ApiOperation)({ summary: "Update an existing user" }),
     __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [String, update_user_dto_js_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)
 ], UserCrudController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(":id"),
+    (0, swagger_1.ApiOperation)({ summary: "Delete a user" }),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UserCrudController.prototype, "remove", null);
 exports.UserCrudController = UserCrudController = __decorate([
+    (0, swagger_1.ApiTags)("Users"),
     (0, common_1.Controller)("user-crud"),
     __metadata("design:paramtypes", [user_crud_service_1.UserCrudService])
 ], UserCrudController);

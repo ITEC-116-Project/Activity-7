@@ -1,6 +1,7 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module.js";
 import { ValidationPipe } from "@nestjs/common";
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
 async function bootstrap() {
   try {
@@ -19,6 +20,22 @@ async function bootstrap() {
 
     // enable validation for DTOs
     app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+
+    // configure swagger documentation at /docs for quick endpoint inspection
+    const swaggerConfig = new DocumentBuilder()
+      .setTitle("Activity 7 API")
+      .setDescription("Interactive documentation for the Activity 7 backend")
+      .setVersion(process.env.npm_package_version ?? "1.0.0")
+      .build();
+    const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig, {
+      deepScanRoutes: true,
+    });
+    SwaggerModule.setup("docs", app, swaggerDocument, {
+      swaggerOptions: {
+        persistAuthorization: true,
+        displayRequestDuration: true,
+      },
+    });
 
     const port = Number(process.env.PORT) || 3000;
     await app.listen(port);
