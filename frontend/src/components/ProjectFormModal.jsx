@@ -3,8 +3,12 @@ import Modal from './Modal';
 
 export default function ProjectFormModal({ modalMode = 'create', modalData = null, onClose = () => {}, onSubmit = async () => {} }) {
   const [submitting, setSubmitting] = useState(false);
-  const projectIcon = (
+  const addIcon = (
     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M5 12h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
+  );
+
+  const editIcon = (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 21v-3.75L14.06 6.19l3.75 3.75L6.75 21H3z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><path d="M14.06 6.19l3.75 3.75" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
   );
   const { todayDate, fmtLocal } = useDateState(modalData);
   // date/time pieces for start/end with AM/PM
@@ -36,7 +40,7 @@ export default function ProjectFormModal({ modalMode = 'create', modalData = nul
   }, [modalData]);
 
   return (
-  <Modal title={modalMode === 'create' ? 'Create Project' : 'Edit Project'} onClose={onClose} icon={modalMode === 'create' ? projectIcon : null}>
+  <Modal title={modalMode === 'create' ? 'Create Project' : 'Edit Project'} onClose={onClose} icon={modalMode === 'create' ? addIcon : editIcon}>
       <form onSubmit={async (e) => {
         e.preventDefault();
         setSubmitting(true);
@@ -125,7 +129,7 @@ export default function ProjectFormModal({ modalMode = 'create', modalData = nul
           </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-          <button type="button" className="link" onClick={onClose}>Cancel</button>
+          <button type="button" className="link link-cancel" onClick={onClose}>Cancel</button>
           <button className="main-button" type="submit" disabled={submitting}>{modalMode === 'create' ? (submitting ? 'Creating...' : 'Create') : (submitting ? 'Saving...' : 'Save')}</button>
         </div>
       </form>

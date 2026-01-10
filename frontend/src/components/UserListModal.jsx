@@ -7,7 +7,7 @@ export default function UserListModal({ open = false, onClose = () => {}, users 
   if (!open) return null;
   return (
     <Modal
-      title={`People in ${currentUser?.department || 'your company'}`}
+      title={`Members of  ${currentUser?.department || 'your company'} Department`}
       onClose={onClose}
       icon={<span role="img" aria-label="users">👥</span>}
     >

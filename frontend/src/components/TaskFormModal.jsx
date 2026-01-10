@@ -31,6 +31,9 @@ export default function TaskFormModal({
   const viewIcon = (
     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.2"/><path d="M12 9v6M12 15h.01" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
   );
+  const editIcon = (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 21v-3.75L14.06 6.19l3.75 3.75L6.75 21H3z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><path d="M14.06 6.19l3.75 3.75" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+  );
 
   const filteredUsers = useMemo(() => {
     // Exclude manager accounts from the assign-to list
@@ -92,7 +95,7 @@ export default function TaskFormModal({
   }
 
   return (
-  <Modal title={modalMode === 'create' ? 'Create Task' : (isView ? 'Task details' : 'Edit Task')} onClose={onClose} icon={modalMode === 'create' ? taskIcon : (isView ? viewIcon : null)}>
+  <Modal title={modalMode === 'create' ? 'Create Task' : (isView ? 'Task details' : 'Edit Task')} onClose={onClose} icon={modalMode === 'create' ? taskIcon : (isView ? viewIcon : editIcon)}>
       {isView ? (
         <div className="task-view">
           <div className="profile-field"><label>Title</label><div>{modalData?.title || '—'}</div></div>
