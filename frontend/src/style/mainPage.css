@@ -128,9 +128,19 @@ body {
 .auth-form input {
   padding: 10px 12px;
   border-radius: 6px;
-  border: none;
+  border: 1px solid #d1d5db; /* thin, subtle border */
+  background: #fff;
   width: 100%;
   box-sizing: border-box;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+
+/* focus state for inputs inside auth forms */
+.auth-form input:focus,
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #0f766e; /* teal accent */
+  box-shadow: 0 6px 18px rgba(15,118,110,0.08);
 }
 
 /* Smaller, left-aligned labels inside auth cards */
