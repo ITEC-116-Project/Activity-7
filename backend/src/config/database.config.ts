@@ -13,9 +13,8 @@ export const DatabaseConfig = TypeOrmModule.forRootAsync({
     password: config.get<string>("DB_PASS"),
     database: config.get<string>("DB_NAME"),
     entities: AllEntities,
-    // Use migrations in place of automatic schema sync to control changes and data migrations
-    synchronize: false,
-    migrationsRun: true,
-    migrations: [__dirname + "/../migrations/*.{ts,js}"],
+  // Enable automatic schema synchronization so new clones migrate schema automatically
+  // (migrations removed from project)
+  synchronize: true,
   }),
 });

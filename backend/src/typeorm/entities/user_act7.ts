@@ -3,6 +3,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  Index,
 } from "typeorm";
 
 export enum Role {
@@ -36,6 +37,7 @@ export class User {
   password: string;
 
   @Column({ nullable: true })
+  @Index()
   companyId?: string;
 
   @Column({ type: "enum", enum: Role, default: Role.MEMBER })

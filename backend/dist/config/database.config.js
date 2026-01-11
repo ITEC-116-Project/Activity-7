@@ -15,9 +15,7 @@ exports.DatabaseConfig = typeorm_1.TypeOrmModule.forRootAsync({
         password: config.get("DB_PASS"),
         database: config.get("DB_NAME"),
         entities: all_entities_1.AllEntities,
-        synchronize: false,
-        migrationsRun: true,
-        migrations: [__dirname + "/../migrations/*.{ts,js}"],
+        synchronize: true,
     }),
 });
 //# sourceMappingURL=database.config.js.map
