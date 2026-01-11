@@ -86,11 +86,8 @@ export default function ProjectFormModal({ modalMode = 'create', modalData = nul
         <div className="field-row">
           <div className="half profile-field">
             <label htmlFor="project-status">Status</label>
-            <select id="project-status" name="status" defaultValue={modalData?.status || 'planned'}>
-              <option value="planned">Planned</option>
-              <option value="active">Active</option>
-              <option value="completed">Completed</option>
-            </select>
+            <div style={{ padding: '8px 0' }}>Planned</div>
+            <input type="hidden" name="status" value="planned" />
           </div>
           {/* owner field removed - creator will be recorded automatically */}
         </div>
